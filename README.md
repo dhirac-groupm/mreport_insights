@@ -7,7 +7,7 @@ then run
 
 yarn install
 
-if eorro relaged engine comes then
+if error related engine comes then
 
 yarn config set ignore-engines true 
 
@@ -17,9 +17,9 @@ yarn add @material-ui/icons
 
 yarn add @material-ui/core
 
-then build and remove all files put only build and app.yaml file
-
 yarn run build
+
+then build and remove all files put only build and app.yaml file
 
 put app.yaml file in same location and run 
 
