@@ -16,7 +16,7 @@ import ErrorIcon from '@material-ui/icons/Error';
 import api from './components/network';
 
 function App() {
-
+  
   const[agency,setAgency] = useState();
   const[loading,setLoading] = useState(false);
   const[loadingAdvertiser,setLoadingAdvertiser] = useState(false);
@@ -57,8 +57,22 @@ function App() {
     {id:"59554",name:"Mindshare"},
     {id:"68663",name:"GroupM"},
     {id:"64945",name:"StudioM"},
-    {id:"145698",name:"oBoticario"}
+    {id:"145698",name:"oBoticario"},
+    {id:"145816",name:"IKEA"}
   ]
+
+
+
+  useEffect(()=>{
+
+      api("https://europe-west1-mreport.cloudfunctions.net/datorama_workspaces","GET")
+      .then(res => {
+       
+        console.log(res,"workspaces");
+
+      }).catch((err)=>console.log(err))
+
+  })
 
 
   const reportTypeList = [
@@ -109,7 +123,19 @@ const sectionList = [
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Digital Reserve'},
 {id: 'Creative Performance', name: 'Creative Performance', channel: 'Digital Reserve'},
 {id: 'Viewability Performance', name: 'Viewability Performance', channel: 'Digital Reserve'},
-{id: 'Conversions Performance', name: 'Conversions Performance', channel: 'Digital Reserve'}
+{id: 'Conversions Performance', name: 'Conversions Performance', channel: 'Digital Reserve'},
+
+{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search & Shopping '},
+{id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Search & Shopping'},
+{id: 'Main KPIs', name: 'Main KPIs', channel: 'Social'},
+{id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Social'},
+
+{id: 'Main KPIs', name: 'Main KPIs', channel: 'Display'},
+{id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Display'},
+{id: 'Main KPIs', name: 'Main KPIs', channel: 'Video'},
+{id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Video'}
+
+
 ]
 
 
@@ -395,7 +421,7 @@ const postData = async (value) =>{
 
           <Grid item xs={6}  >
                 <FormControl variant="standard"  fullWidth style={{marginTop:50}}>
-                          <InputLabel id="demo-simple-select-standard-label">Agency *</InputLabel>
+                          <InputLabel id="demo-simple-select-standard-label">Workspace *</InputLabel>
                           <Select fullWidth
                           labelId="demo-simple-select-standard-label"
                           id="demo-simple-select-standard"
@@ -533,7 +559,7 @@ const postData = async (value) =>{
 
 
           <FormControl variant="standard"  fullWidth style={{marginTop:50}}>
-                          <InputLabel id="demo-simple-select-standard-label">Channel *&nbsp;&nbsp;  {loading == true ? "  Loading data .... please wait " : "" }</InputLabel>
+                          <InputLabel id="demo-simple-select-standard-label">Pages *&nbsp;&nbsp;  {loading == true ? "  Loading data .... please wait " : "" }</InputLabel>
                           <Select fullWidth
                           labelId="demo-simple-select-standard-label"
                           id="demo-simple-select-standard"
