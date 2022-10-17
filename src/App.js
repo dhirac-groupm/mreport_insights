@@ -125,7 +125,7 @@ const sectionList = [
 {id: 'Viewability Performance', name: 'Viewability Performance', channel: 'Digital Reserve'},
 {id: 'Conversions Performance', name: 'Conversions Performance', channel: 'Digital Reserve'},
 
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search & Shopping '},
+{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search & Shopping'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Search & Shopping'},
 {id: 'Main KPIs', name: 'Main KPIs', channel: 'Social'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Social'},
