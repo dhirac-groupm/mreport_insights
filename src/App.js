@@ -83,7 +83,7 @@ function App() {
   ]
 
 const sectionList = [
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search'},
 {id: 'Summary', name: 'Summary', channel: 'Search'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Search'},
 {id: 'Keyword Performance', name: 'Keyword Performance', channel: 'Search'},
@@ -92,16 +92,16 @@ const sectionList = [
 {id: 'Device Performance', name: 'Device Performance', channel: 'Search'},
 {id: 'Temporal Performance', name: 'Temporal Performance', channel: 'Search'},
 {id: 'Adgroup Performance', name: 'Adgroup Performance', channel: 'Search'},
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Google Display'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Google Display'},
 {id: 'Temporal Performance', name: 'Temporal Performance', channel: 'Google Display'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Google Display'},
 {id: 'Conversions Performance', name: 'Conversions Performance', channel: 'Google Display'},
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'YouTube'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'YouTube'},
 {id: 'Temporal Performance', name: 'Temporal Performance', channel: 'YouTube'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'YouTube'},
 {id: 'Device Performance', name: 'Device Performance', channel: 'YouTube'},
 {id: 'Conversions Performance', name: 'Conversions Performance', channel: 'YouTube'},
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Facebook'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Facebook'},
 {id: 'Temporal Performance', name: 'Temporal Performance', channel: 'Facebook'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Facebook'},
 {id: 'Objective: Awareness', name: 'Objective: Awareness', channel: 'Facebook'},
@@ -117,7 +117,7 @@ const sectionList = [
 {id: 'Objective: Store Visits', name: 'Objective: Store Visits', channel: 'Facebook'},
 {id: 'Conversions Performance', name: 'Conversions Performance', channel: 'Facebook'},
 {id: 'Device Performance', name: 'Device Performance', channel: 'Facebook'},
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Digital Reserve'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Digital Reserve'},
 {id: 'Temporal Performance', name: 'Temporal Performance', channel: 'Digital Reserve'},
 {id: 'Delivery Performance', name: 'Delivery Performance', channel: 'Digital Reserve'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Digital Reserve'},
@@ -125,17 +125,15 @@ const sectionList = [
 {id: 'Viewability Performance', name: 'Viewability Performance', channel: 'Digital Reserve'},
 {id: 'Conversions Performance', name: 'Conversions Performance', channel: 'Digital Reserve'},
 
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search & Shopping'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search & Shopping'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Search & Shopping'},
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Social'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Social'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Social'},
 
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Display'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Display'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Display'},
-{id: 'Main KPIs', name: 'Main KPIs', channel: 'Video'},
+//{id: 'Main KPIs', name: 'Main KPIs', channel: 'Video'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Video'}
-
-
 ]
 
 
@@ -794,4 +792,9 @@ const postData = async (value) =>{
 }
 
 export default App;
+
+
+
+
+
 
