@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = async (url,method,payload) => {
 
-    console.log(method,payload);
+    
 
     if(method == "POST"){
 

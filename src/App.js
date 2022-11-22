@@ -38,6 +38,7 @@ function App() {
   const[sucMessage,setSucMessage]=useState(false);
   const[errMessage,setErrMessage]=useState(false);
   const [open, setOpen] = React.useState(false);
+  const [sectionsA, setASections ]= React.useState(false);
 
   //validation
   const[agencyVal,setAgencyVal] = useState(false);
@@ -82,6 +83,8 @@ function App() {
    
   ]
 
+
+/* depricated
 const sectionList = [
 //{id: 'Main KPIs', name: 'Main KPIs', channel: 'Search'},
 {id: 'Summary', name: 'Summary', channel: 'Search'},
@@ -135,7 +138,7 @@ const sectionList = [
 //{id: 'Main KPIs', name: 'Main KPIs', channel: 'Video'},
 {id: 'Detailed Performance', name: 'Detailed Performance', channel: 'Video'}
 ]
-
+*/
 
 useEffect(() => {
   setDate(getCurrentDate())
@@ -143,6 +146,8 @@ useEffect(() => {
 
 
 const handleAgency = async (value) =>{
+
+
 
   setAgencyVal(false)
   setSectionFilter([]);
@@ -168,7 +173,17 @@ const handleAgency = async (value) =>{
    }).catch((err)=>console.log(err))
   
  
+   api("https://europe-west3-mreport.cloudfunctions.net/datorama_sections","POST", { workspace_id: value })
+   .then(res => {
+    
 
+    
+
+    setSectionFilter(res.data[0]);
+
+
+
+    }).catch((err)=>console.log(err))
 
 }
 
@@ -191,13 +206,15 @@ const handleChannel = async (value) =>{
 
     setChannel(value);
 
-    addSection(value);
+   // addSection(value); depra
 
 
 
   
 }
 
+
+/* depricated 
 const addSection = (value) => {
 
 
@@ -223,7 +240,7 @@ const addSection = (value) => {
 
   }
 }
-
+*/
 
 const handleCampaign = async (value) =>{
 
@@ -235,6 +252,8 @@ const handleCampaign = async (value) =>{
  }
 
  const handleSection = async (value) =>{
+
+
  
   setSectionVal(false);
  
@@ -581,6 +600,8 @@ const postData = async (value) =>{
                     </Select>
               </FormControl>
 
+
+              {/**
               <FormControl variant="standard"  fullWidth style={{marginTop:50}}>
                           <InputLabel id="demo-simple-select-standard-label">Section *</InputLabel>
                           <Select fullWidth
@@ -597,6 +618,28 @@ const postData = async (value) =>{
                          {sectionFilter.length >= 1 ? sectionFilter.map((res,index) => {
                           return(
                           <MenuItem key={index} value={res.name}>{res.name}</MenuItem>
+                          )}):<MenuItem >No Data Avaliable</MenuItem>}
+                    </Select>
+              </FormControl>
+               */}
+
+
+               <FormControl variant="standard"  fullWidth style={{marginTop:50}}>
+                          <InputLabel id="demo-simple-select-standard-label">Section *</InputLabel>
+                          <Select fullWidth
+                          labelId="demo-simple-select-standard-label"
+                          id="demo-simple-select-standard"
+                          value={section}
+                          error={sectionVal}
+                          onChange={(e) => handleSection(e.target.value)}
+                          label="Section"
+                          MenuProps={{
+                          disableScrollLock: false,
+                        }}
+                        >
+                         {sectionFilter.length >= 1 ? sectionFilter.map((res,index) => {
+                          return(
+                          <MenuItem key={index} value={res}>{res}</MenuItem>
                           )}):<MenuItem >No Data Avaliable</MenuItem>}
                     </Select>
               </FormControl>
