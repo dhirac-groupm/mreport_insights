@@ -16,7 +16,8 @@ import ErrorIcon from '@material-ui/icons/Error';
 import api from './components/network';
 
 function App() {
-  
+
+  const[agencyList,setAgencyList] = useState([]);
   const[agency,setAgency] = useState();
   const[loading,setLoading] = useState(false);
   const[loadingAdvertiser,setLoadingAdvertiser] = useState(false);
@@ -38,7 +39,7 @@ function App() {
   const[sucMessage,setSucMessage]=useState(false);
   const[errMessage,setErrMessage]=useState(false);
   const [open, setOpen] = React.useState(false);
-  const [sectionsA, setASections ]= React.useState(false);
+
 
   //validation
   const[agencyVal,setAgencyVal] = useState(false);
@@ -51,7 +52,7 @@ function App() {
   const[sectionVal,setSectionVal] = useState(false);
   const[insightVal,setInsightVal] = useState(false);
 
-
+/*
   const agencyList = [
     {id:"51710",name:"Mediacom"},
     {id:"59553",name:"Wavemaker"},
@@ -60,7 +61,21 @@ function App() {
     {id:"64945",name:"StudioM"},
     {id:"145698",name:"oBoticario"},
     {id:"145816",name:"IKEA"}
-  ]
+  ]*/
+
+
+
+useEffect(()=>{
+
+  api("https://europe-west1-mreport.cloudfunctions.net/datorama_workspaces","GET")
+  .then(res => {
+   
+
+    setAgencyList(res.data);
+
+  }).catch((err)=>console.log(err))
+
+},[])
 
 
 
@@ -420,7 +435,7 @@ const postData = async (value) =>{
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-       
+       {console.log(agencyList,"check list")}
          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             mReport Insights
           </Typography>
@@ -437,6 +452,8 @@ const postData = async (value) =>{
       <Grid container spacing={2} >
 
           <Grid item xs={6}  >
+
+            {/**
                 <FormControl variant="standard"  fullWidth style={{marginTop:50}}>
                           <InputLabel id="demo-simple-select-standard-label">Workspace *</InputLabel>
                           <Select fullWidth
@@ -452,6 +469,32 @@ const postData = async (value) =>{
                           {agencyList.map((res,index) => {
                           return(
                           <MenuItem key={index} value={res.id}>{res.name}</MenuItem>
+                          )})}
+                          
+                         
+                    </Select>
+                 
+              </FormControl>
+
+               */}
+
+               <FormControl variant="standard"  fullWidth style={{marginTop:50}}>
+                          <InputLabel id="demo-simple-select-standard-label">Workspace *</InputLabel>
+                          <Select fullWidth
+                          labelId="demo-simple-select-standard-label"
+                          id="demo-simple-select-standard"
+                          value={agency}
+                          onChange={(e) => handleAgency(e.target.value)}
+                          label="Agency"
+                          error={agencyVal}
+                          required
+                        >
+                  
+                          {agencyList.map((res,index) => {
+
+                            console.log(res,"Wtf")
+                          return(
+                          <MenuItem key={index} value={res.workspace_id}>{res.workspace}</MenuItem>
                           )})}
                           
                          
