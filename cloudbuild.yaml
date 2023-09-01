@@ -3,8 +3,8 @@ steps:
   entrypoint: 'yarn'
   args: ["install","--ignore-engines"]
 - name: 'gcr.io/cloud-builders/yarn:node-14.17.1'
-  entrypoint: 'yarn'
-  args: ["add","@material-ui/icons"]
+  entrypoint: 'npm'
+  args: ["install","@material-ui/icons"]
 - name: 'gcr.io/cloud-builders/yarn:node-14.17.1'
   entrypoint: 'yarn'
   args: ["add","@material-ui/core"]
