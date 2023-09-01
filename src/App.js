@@ -63,7 +63,27 @@ function App() {
     {id:"145816",name:"IKEA"}
   ]*/
 
+useEffect(()=>{
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
 
+var raw = JSON.stringify({
+  "workspace_id": "59553"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://corsv2-3f8dzjs9.ew.gateway.dev/datorama_advertisers_v2?key=AIzaSyC7a3LwwElK9JInCPcXvHVsMZkOiS9ei_0", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+},[])
 
 useEffect(()=>{
 
