@@ -66,7 +66,7 @@ function App() {
 
   useEffect(()=>{
 
-      api("datorama_workspaces_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"GET")
+      api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/datorama_workspaces_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"GET")
       .then(res => {
        
         setAgencyList(res.data);
@@ -158,7 +158,7 @@ const handleAgency = async (value) =>{
   setChannel('');
   setLoading(true);
 
-  api("datorama_channels_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
+  api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/datorama_channels_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
   .then(res => {
     setChannelList(res.data.data);
     setLoading(false);
@@ -167,14 +167,14 @@ const handleAgency = async (value) =>{
 
 
   setLoadingAdvertiser(true);
-  api("datorama_advertisers_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
+  api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/datorama_advertisers_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
   .then(res => {
     setAdvertiserList(res.data.data);
     setLoadingAdvertiser(false);
    }).catch((err)=>console.log(err))
   
  
-   api("datorama_sections_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
+   api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/datorama_sections_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
    .then(res => {
     
 
@@ -195,7 +195,7 @@ const handleChannel = async (value) =>{
   if(advertiser.length > 1){
     
     setLoadingCampaign(true);
-    api("datorama_campaigns_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: agency, advertiser:advertiser,channel:value })
+    api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/datorama_campaigns_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: agency, advertiser:advertiser,channel:value })
     .then(res => {
       setCampaignList(res.data.data);
       setLoadingCampaign(false);
@@ -288,7 +288,7 @@ const handleAdvertiser = async (value) =>{
   if(channel){
     
       setLoadingCampaign(true);
-      api("datorama_campaigns_v2","POST", {  workspace_id: agency, advertiser:value,channel:channel })
+      api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/datorama_campaigns_v2","POST", {  workspace_id: agency, advertiser:value,channel:channel })
       .then(res => {
         setCampaignList(res.data.data);
         setLoadingCampaign(false);
@@ -398,7 +398,7 @@ const postData = async (value) =>{
  // setSucMessage(true);
    // setErrMessage(true);
  
-  api("insight_to_bigquery_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST",  { data :{ insert_date:new Date().toISOString(), report_type:reportType,date:date,email:email,channel:channel,section:section,advertiser_id:campaign.advertiser_id,advertiser:advertiser,campaign_id:campaign.campaign_id,campaign:campaign.campaign_name,comment:insight,workspace_id:agency }})
+  api("https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/insight_to_bigquery_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST",  { data :{ insert_date:new Date().toISOString(), report_type:reportType,date:date,email:email,channel:channel,section:section,advertiser_id:campaign.advertiser_id,advertiser:advertiser,campaign_id:campaign.campaign_id,campaign:campaign.campaign_name,comment:insight,workspace_id:agency }})
   .then(res => {
     if(res.data.status == "success"){
 

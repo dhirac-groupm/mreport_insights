@@ -2,7 +2,6 @@
   "name": "mreport-insights",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://datoramaapigateway-3f8dzjs9.ew.gateway.dev/",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
