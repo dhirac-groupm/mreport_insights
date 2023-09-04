@@ -63,52 +63,18 @@ function App() {
     {id:"145816",name:"IKEA"}
   ]*/
 
-useEffect(()=>{
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({
-  "workspace_id": "59553"
-});
-
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-fetch("https://corsv2-3f8dzjs9.ew.gateway.dev/datorama_advertisers_v2?key=AIzaSyC7a3LwwElK9JInCPcXvHVsMZkOiS9ei_0", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-},[])
-
-useEffect(()=>{
-
-  api("https://europe-west1-mreport.cloudfunctions.net/datorama_workspaces","GET")
-  .then(res => {
-   
-
-    setAgencyList(res.data);
-
-  }).catch((err)=>console.log(err))
-
-},[])
-
-
 
   useEffect(()=>{
 
-      api("https://europe-west1-mreport.cloudfunctions.net/datorama_workspaces","GET")
+      api("datorama_workspaces_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"GET")
       .then(res => {
        
-        console.log(res,"workspaces");
+        setAgencyList(res.data);
+        
 
       }).catch((err)=>console.log(err))
 
-  })
+  },[])
 
 
   const reportTypeList = [
@@ -192,7 +158,7 @@ const handleAgency = async (value) =>{
   setChannel('');
   setLoading(true);
 
-  api("https://europe-west3-mreport.cloudfunctions.net/datorama_channels","POST", { workspace_id: value })
+  api("datorama_channels_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
   .then(res => {
     setChannelList(res.data.data);
     setLoading(false);
@@ -201,14 +167,14 @@ const handleAgency = async (value) =>{
 
 
   setLoadingAdvertiser(true);
-  api("https://europe-west3-mreport.cloudfunctions.net/datorama_advertisers","POST", { workspace_id: value })
+  api("datorama_advertisers_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
   .then(res => {
     setAdvertiserList(res.data.data);
     setLoadingAdvertiser(false);
    }).catch((err)=>console.log(err))
   
  
-   api("https://europe-west3-mreport.cloudfunctions.net/datorama_sections","POST", { workspace_id: value })
+   api("datorama_sections_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: value })
    .then(res => {
     
 
@@ -229,7 +195,7 @@ const handleChannel = async (value) =>{
   if(advertiser.length > 1){
     
     setLoadingCampaign(true);
-    api("https://europe-west3-mreport.cloudfunctions.net/datorama_campaigns","POST", { workspace_id: agency, advertiser:advertiser,channel:value })
+    api("datorama_campaigns_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST", { workspace_id: agency, advertiser:advertiser,channel:value })
     .then(res => {
       setCampaignList(res.data.data);
       setLoadingCampaign(false);
@@ -322,7 +288,7 @@ const handleAdvertiser = async (value) =>{
   if(channel){
     
       setLoadingCampaign(true);
-      api("https://europe-west3-mreport.cloudfunctions.net/datorama_campaigns","POST", {  workspace_id: agency, advertiser:value,channel:channel })
+      api("datorama_campaigns_v2","POST", {  workspace_id: agency, advertiser:value,channel:channel })
       .then(res => {
         setCampaignList(res.data.data);
         setLoadingCampaign(false);
@@ -432,7 +398,7 @@ const postData = async (value) =>{
  // setSucMessage(true);
    // setErrMessage(true);
  
-  api("https://europe-west3-mreport.cloudfunctions.net/insight_to_bigquery","POST",  { data :{ insert_date:new Date().toISOString(), report_type:reportType,date:date,email:email,channel:channel,section:section,advertiser_id:campaign.advertiser_id,advertiser:advertiser,campaign_id:campaign.campaign_id,campaign:campaign.campaign_name,comment:insight,workspace_id:agency }})
+  api("insight_to_bigquery_v2?key="+process.env.REACT_APP_GATEWAY_KEY,"POST",  { data :{ insert_date:new Date().toISOString(), report_type:reportType,date:date,email:email,channel:channel,section:section,advertiser_id:campaign.advertiser_id,advertiser:advertiser,campaign_id:campaign.campaign_id,campaign:campaign.campaign_name,comment:insight,workspace_id:agency }})
   .then(res => {
     if(res.data.status == "success"){
 
@@ -898,6 +864,10 @@ const postData = async (value) =>{
 }
 
 export default App;
+
+
+
+
 
 
 
